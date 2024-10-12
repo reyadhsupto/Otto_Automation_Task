@@ -3,6 +3,7 @@ import os
 from slugify import slugify
 from playwright.sync_api import sync_playwright
 from src.utils.ReadProperties import ReadConfig
+import pdfkit
 
 
 headless_status = False
@@ -29,6 +30,7 @@ def init_page(request):
         page.close()
         context.close()
         browser.close()
+        
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -47,3 +49,18 @@ def pytest_runtest_makereport(item, call):
                 extra = getattr(report, 'extra', [])
                 extra.append(pytest_html.extras.image(os.path.normpath(scrnsht_path)))
                 report.extras = extra
+
+def pytest_sessionfinish(session, exitstatus):
+    html_report = 'test_report.html'
+    pdf_report = 'test_report.pdf'
+    options = {
+    'no-stop-slow-scripts': None,
+    'disable-local-file-access': None,
+    'enable-local-file-access': None
+    }
+
+    
+    if os.path.exists(html_report):
+        pdfkit.from_file(html_report, pdf_report, options=options)
+    else:
+        raise FileNotFoundError("\nHTML report not found. No PDF generated.")
