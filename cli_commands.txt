@@ -1,2 +1,2 @@
-pytest -m "sanity" -v -s --html=sanity_testing.html --capture==tee-sys
-pytest -v -s --html=sanity_testing.html  --capture==tee-sys
+pytest -m "sanity" -v -s --html=sanity_testing.html --capture=tee-sys --self-contained-html
+pytest -v -s --html=test_report.html  --capture=tee-sys --self-contained-html

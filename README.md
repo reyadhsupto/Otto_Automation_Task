@@ -26,7 +26,9 @@ This project automates the testing of essential functionalities (searching, sort
 **Browser:** Chromium
 
 ## Prerequisites
-pip, Python:3.10 or Higher
+**pip** 
+**Python: 3.10 or Higher**
+**wkhtmltopdf (for pdf generation)**
 
 
 ## Installation

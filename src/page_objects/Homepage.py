@@ -74,10 +74,10 @@ class HomePage(BaseClass):
         product.click()
 
     def add_to_cart(self):
-        self.page.wait_for_selector(self.addtocartbtn_locator, state="visible", timeout=5000).click()
+        self.page.wait_for_selector(self.addtocartbtn_locator, state="visible", timeout=10000).click()
         self.page.wait_for_load_state('networkidle')
 
-        self.page.wait_for_selector("button:has-text('In den Warenkorb')", state="visible", timeout=5000)
+        self.page.wait_for_selector("button:has-text('In den Warenkorb')", state="visible", timeout=10000)
         self.page.get_by_role("button", name="In den Warenkorb").click()
         self.page.wait_for_load_state('networkidle')
 
